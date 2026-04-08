@@ -1,0 +1,22 @@
+name: Run Python Script
+
+on: [push, workflow_dispatch] # Triggers on push or manual start
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Specify your preferred version
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt # Optional: Install if you have external packages
+
+      - name: Run script
+        run: python test.py
